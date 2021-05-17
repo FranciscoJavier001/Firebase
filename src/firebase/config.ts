@@ -2,7 +2,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore' //** Esto me va a habilitar todas las funcionalidades de firestore */
 
-const firebaseConfig = {
+const firebaseConfig = { //** Esta es la cadena de conexion */
     apiKey: "AIzaSyBuKkM3Zr-Sca2XWUc1GR0ZSnWJsyx98dg",
     authDomain: "sql-demos-ee8c4.firebaseapp.com",
     projectId: "sql-demos-ee8c4",
