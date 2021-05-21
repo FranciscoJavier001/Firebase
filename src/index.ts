@@ -32,3 +32,9 @@ const usuariosRef = db.collection('usuarios')//** Esta va a ser la referencia a 
 //         id: 123
 //     })
 
+// Delete From Usuarios Where id = "xxx"
+usuariosRef
+    .doc("1AajRuGHD80PXPpXFAgN")
+    .delete()
+    .then( () => console.log('Borrado') ) //** Esto es una promesa, por eso ocupo el .then, puedo poner dentro una respuesta, aunque creo que no manda nada y mostramos en consola la respuesta */
+    .catch ( e => console.log('error', e )) //** En caso que nos mande un error, para atraparlo, y que nos muestre en consola el error */
