@@ -33,8 +33,25 @@ const usuariosRef = db.collection('usuarios')//** Esta va a ser la referencia a 
 //     })
 
 // Delete From Usuarios Where id = "xxx"
+// usuariosRef
+//     .doc("1AajRuGHD80PXPpXFAgN")
+//     .delete()
+//     .then( () => console.log('Borrado') ) //** Esto es una promesa, por eso ocupo el .then, puedo poner dentro una respuesta, aunque creo que no manda nada y mostramos en consola la respuesta */
+//     .catch ( e => console.log('error', e )) //** En caso que nos mande un error, para atraparlo, y que nos muestre en consola el error */
+
+// Select * From Usuarios
 usuariosRef
-    .doc("1AajRuGHD80PXPpXFAgN")
-    .delete()
-    .then( () => console.log('Borrado') ) //** Esto es una promesa, por eso ocupo el .then, puedo poner dentro una respuesta, aunque creo que no manda nada y mostramos en consola la respuesta */
-    .catch ( e => console.log('error', e )) //** En caso que nos mande un error, para atraparlo, y que nos muestre en consola el error */
+    .onSnapshot( snap => { //** Es un callback que se va a ejecutar en el lado de la base de datos de firestore */
+        
+        //** Voy a crear un arreglo que se llame usuarios y lo voy a inicializar vacio */
+        const usuarios: any[] = [] //** Que sea un arreglo del tipo Any */
+
+        snap.forEach( snapHijo => { //** Me permite barrer cada elemento que tenga el arreglo */    
+            usuarios.push({ //** Voy a crearme un nuevo objeto y le voy a colocar una propiedad llamada ID que sea igual al snapHijo.id */
+                id: snapHijo.id,
+                ...snapHijo.data() //** Pero me falta la data, y voy a usar el operador spred... y porner el snapHijo.data() */
+            })
+        })
+
+        console.log( usuarios ); //** Esto es un arreglo de JS */
+    })
