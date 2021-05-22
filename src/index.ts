@@ -1,4 +1,5 @@
 import db from './firebase/config' //** db hace referencia a la importacion por defecto que tengo en el export del config.ts */
+import { retornaDocumentos } from './helpers/mostrar-documentos' //** Asi importo */
 
 const usuario = { //** Voy a crear un objeto llamado usuaruo y los de adentro van a ser los parametros */
     nombre: 'Pedro',
@@ -40,18 +41,10 @@ const usuariosRef = db.collection('usuarios')//** Esta va a ser la referencia a 
 //     .catch ( e => console.log('error', e )) //** En caso que nos mande un error, para atraparlo, y que nos muestre en consola el error */
 
 // Select * From Usuarios
+// usuariosRef
+//     .onSnapshot( retornaDocumentos ) //** Importe la funcion de retornaDocumentos y asi me manda como argumentos los parametros que le pedi */
+
+//** Con el get no creo un observable que este al pendiente de los cambios */
 usuariosRef
-    .onSnapshot( snap => { //** Es un callback que se va a ejecutar en el lado de la base de datos de firestore */
-        
-        //** Voy a crear un arreglo que se llame usuarios y lo voy a inicializar vacio */
-        const usuarios: any[] = [] //** Que sea un arreglo del tipo Any */
-
-        snap.forEach( snapHijo => { //** Me permite barrer cada elemento que tenga el arreglo */    
-            usuarios.push({ //** Voy a crearme un nuevo objeto y le voy a colocar una propiedad llamada ID que sea igual al snapHijo.id */
-                id: snapHijo.id,
-                ...snapHijo.data() //** Pero me falta la data, y voy a usar el operador spred... y porner el snapHijo.data() */
-            })
-        })
-
-        console.log( usuarios ); //** Esto es un arreglo de JS */
-    })
+    .get().then( retornaDocumentos ) //** Esta es una promesa que no va a estar al pendiente de los cambios porque es un get */
+    //** Es un argumento, una funcion, esa manda el primer argumento de la promesa  */
