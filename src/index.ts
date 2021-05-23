@@ -45,6 +45,22 @@ const usuariosRef = db.collection('usuarios')//** Esta va a ser la referencia a 
 //     .onSnapshot( retornaDocumentos ) //** Importe la funcion de retornaDocumentos y asi me manda como argumentos los parametros que le pedi */
 
 //** Con el get no creo un observable que este al pendiente de los cambios */
-usuariosRef
-    .get().then( retornaDocumentos ) //** Esta es una promesa que no va a estar al pendiente de los cambios porque es un get */
-    //** Es un argumento, una funcion, esa manda el primer argumento de la promesa  */
+// usuariosRef
+    // .get().then( retornaDocumentos ) //** Esta es una promesa que no va a estar al pendiente de los cambios porque es un get */
+//** Es un argumento, una funcion, esa manda el primer argumento de la promesa  */
+
+ //** Select * from usuarios Where activo = true, esto es un metodo que recibe 3 argumento, aqui busco el activo en true */
+// usuariosRef.where('activo',"==",true).get().then( retornaDocumentos )
+
+//** Select * from usuarios Where salario > 1800 */
+// usuariosRef.where('salario','>',1800).get().then(retornaDocumentos)
+
+//** Select * from usuarios Where salario > 1800 and salario < 2300 */
+// usuariosRef.where('salario','>',1800)
+//             .where('salario','<',2300)
+//         .get().then( retornaDocumentos )
+
+//** Select * from usuarios Where salario > 1800 And activo == true */
+usuariosRef.where('salario','>',1800)
+            .where('activo','==',true)
+        .get().then( retornaDocumentos )
