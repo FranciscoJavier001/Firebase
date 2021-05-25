@@ -3,6 +3,7 @@
 //** Esto va a ser una funcion */
 //** Voy a importar firebase, pero solo para tener el tipado */
 import firebase from 'firebase'
+// import firestore from 'firebase'
 
 export const retornaDocumentos = ( snapshot:firebase.firestore.QuerySnapshot ) => { //** Va a recibir un snapShop, y con los dos puntos declaro el tipo de archivo ya que me lo pide */
 
